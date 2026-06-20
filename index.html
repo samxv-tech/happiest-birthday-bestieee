@@ -1,0 +1,1087 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JUST FOR YOU MY BESTIEE🫠🫶🏻</title>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg, #2b0a1f, #5c1a3c, #d46a92);
+overflow-x:hidden;
+color:white;
+}
+
+/* PASSCODE SCREEN */
+
+#lockScreen{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+
+/* ADD YOUR IMAGE HERE */
+background:url('https://github.com/samxv-tech/happy-birthday-3/blob/main/WhatsApp%20Image%202026-06-20%20at%2010.43.45%20AM.jpeg?raw=true') center center/cover no-repeat;
+
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:99999;
+overflow:hidden;
+}
+
+.lock-box{
+background:rgba(255,255,255,0.12);
+padding:35px 25px;
+border-radius:30px;
+backdrop-filter:transparent(12px);
+text-align:center;
+width:90%;
+max-width:350px;
+box-shadow:0 0 25px rgba(255,255,255,0.25);
+color:white;
+}
+
+.lock-box h1{
+margin-bottom:10px;
+font-size:2rem;
+}
+
+.lock-box p{
+margin-bottom:15px;
+opacity:0.9;
+}
+
+#passcode{
+width:100%;
+height:55px;
+border:none;
+border-radius:15px;
+font-size:2rem;
+text-align:center;
+letter-spacing:10px;
+margin-bottom:20px;
+background:white;
+color:#0575E6;
+font-weight:700;
+}
+
+.keypad{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px;
+}
+
+.keypad button{
+height:65px;
+border:none;
+border-radius:18px;
+font-size:1.3rem;
+font-weight:700;
+background:white;
+color:#0575E6;
+cursor:pointer;
+transition:0.2s;
+}
+
+.keypad button:hover{
+transform:scale(1.05);
+}
+
+#wrongPass{
+margin-top:15px;
+color:#ffd1d1;
+font-size:0.95rem;
+}
+
+/* WEBSITE */
+
+.page{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:30px 20px;
+text-align:center;
+position:relative;
+}
+
+.title{
+font-size:2.2rem;
+font-weight:700;
+margin-bottom:20px;
+text-shadow:0 0 20px rgba(255,255,255,0.5);
+}
+
+.message{
+max-width:900px;
+font-size:1.1rem;
+line-height:2;
+background:rgba(255,255,255,0.12);
+padding:25px;
+border-radius:25px;
+backdrop-filter:blur(10px);
+box-shadow:0 0 25px rgba(255,255,255,0.2);
+}
+
+.next-btn{
+margin-top:30px;
+padding:12px 28px;
+border:none;
+border-radius:30px;
+background:white;
+color:#0575E6;
+font-size:1rem;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+}
+
+.next-btn:hover{
+transform:scale(1.08);
+}
+
+.hearts span{
+position:absolute;
+font-size:25px;
+animation:float 8s linear infinite;
+opacity:0.8;
+}
+
+@keyframes float{
+0%{
+transform:translateY(100vh) scale(0.5);
+opacity:0;
+}
+50%{
+opacity:1;
+}
+100%{
+transform:translateY(-120vh) scale(1.2);
+opacity:0;
+}
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+gap:15px;
+width:100%;
+max-width:900px;
+margin-top:25px;
+}
+
+.gallery img{
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:20px;
+border:3px solid rgba(255,255,255,0.4);
+box-shadow:0 0 15px rgba(255,255,255,0.3);
+transition:0.3s;
+}
+
+.gallery img:hover{
+transform:scale(1.05);
+}
+
+.video-box{
+width:100%;
+max-width:900px;
+margin-top:25px;
+}
+
+.video-box img{
+display:block;
+margin:0 auto;
+width:100%;
+max-width:350px;
+border-radius:20px;
+}
+
+video{
+width:100%;
+border-radius:25px;
+box-shadow:0 0 20px rgba(255,255,255,0.3);
+}
+
+.hidden-message{
+margin-top:25px;
+background:white;
+color:#0575E6;
+padding:18px;
+border-radius:20px;
+font-weight:600;
+display:none;
+animation:fade 1s ease;
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+.reveal-btn{
+margin-top:20px;
+padding:12px 25px;
+border:none;
+border-radius:30px;
+font-weight:600;
+background:#fff;
+color:#0575E6;
+cursor:pointer;
+}
+
+.footer{
+margin-top:40px;
+font-size:0.9rem;
+opacity:0.8;
+}
+
+.memory{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.memory img{
+    width:300px;
+    max-width:100%;
+    border-radius:20px;
+    display:block;
+}
+
+@media (max-width:768px){
+
+.title{
+    font-size:1.7rem;
+}
+
+.message{
+    width:100%;
+    font-size:1rem;
+    line-height:1.8;
+    padding:20px;
+}
+
+.gallery{
+    grid-template-columns:1fr;
+}
+
+.gallery img{
+    height:auto;
+}
+
+.video-box{
+    width:100%;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- PASSCODE SCREEN -->
+
+<div id="lockScreen">
+
+<div class="lock-box">
+
+<h1>Enter Passcode 💞🌸</h1>
+<p>happy birthday bachiiii..🥹🤌🏻 </p>
+
+<input type="password" id="passcode" readonly>
+
+<div class="keypad">
+
+<button onclick="addNumber('1')">1</button>
+<button onclick="addNumber('2')">2</button>
+<button onclick="addNumber('3')">3</button>
+
+<button onclick="addNumber('4')">4</button>
+<button onclick="addNumber('5')">5</button>
+<button onclick="addNumber('6')">6</button>
+
+<button onclick="addNumber('7')">7</button>
+<button onclick="addNumber('8')">8</button>
+<button onclick="addNumber('9')">9</button>
+
+<button onclick="clearPass()">⌫</button>
+<button onclick="addNumber('0')">0</button>
+<button onclick="checkPass()">🌸</button>
+
+</div>
+
+<p id="wrongPass"></p>
+
+</div>
+
+</div>
+
+<!-- PAGE 1 -->
+
+<section class="page">
+
+<div class="hearts">
+<span style="left:10%;animation-delay:0s;">💙</span>
+<span style="left:25%;animation-delay:2s;">🌸</span>
+<span style="left:45%;animation-delay:4s;">💖</span>
+<span style="left:70%;animation-delay:1s;">🌹</span>
+<span style="left:85%;animation-delay:3s;">💙</span>
+</div>
+
+<h1 class="title">JUST FOR YOU MY BESTIE.🥹🤌🏻</h1>
+
+<div class="message">
+
+Happiest birthday mere pyaariiiiii bacchiiiii...🥹🤌🏻 <br><br>
+
+You're the most precious person I have ever met. Aaj tumhara birthday hai aur bhaiiii, main itna excited hu ki bata bhi nahi sakta. Tu mere liye kya hai, shayad main kabhi words mein explain hi na kar paun. 🥹🫶🏻
+<br><br>
+
+💌 Special Surprise Message 💌 <br><br>
+
+<b>AAP NA HO TOH MAI BHI NAHI!!...</b>
+
+</div>
+
+<div class="video-box">
+<video controls>
+<source src="https://github.com/samxv-tech/happy-birthday-3/raw/refs/heads/main/lv_7573509080216784133_20260530151130.mp4" type="video/mp4">
+</video>
+</div>
+
+<button class="next-btn" onclick="scrollToPage(1)">Next 💙</button>
+
+</section>
+
+<!-- PAGE 2 -->
+
+<section class="page">
+
+<div class="hearts">
+<span style="left:15%;animation-delay:0s;">💙</span>
+<span style="left:35%;animation-delay:2s;">🌸</span>
+<span style="left:65%;animation-delay:1s;">💖</span>
+<span style="left:85%;animation-delay:3s;">🌹</span>
+</div>
+
+<h1 class="title">For My behnaaaaaaa🥹🎀</h1>
+
+<div class="message">
+
+One day tu meri zindagi mein aayi
+aur sab kuch badal gaya.<br>
+Maine socha tha ki kabhi kisi 
+se itna close nahi hounga, lekin<br>
+tune woh soch hi badal di.<br>
+Ab tu meri aadhi jaan hai. 🎀
+
+</div>
+
+<div class="video-box">
+<video controls>
+<source src="https://github.com/samxv-tech/happy-birthday-3/raw/refs/heads/main/lv_7614153567707909392_20260527120926.mp4" type="video/mp4">
+</video>
+</div>
+
+<button class="next-btn" onclick="scrollToPage(2)">Next 🌸</button>
+
+</section>
+
+<!-- PAGE 3 -->
+
+<section class="page">
+
+<div class="hearts">
+<span style="left:12%;animation-delay:0s;">💙</span>
+<span style="left:28%;animation-delay:2s;">🌸</span>
+<span style="left:52%;animation-delay:4s;">💖</span>
+<span style="left:72%;animation-delay:1s;">🌹</span>
+<span style="left:90%;animation-delay:3s;">💙</span>
+</div>
+
+
+<div class="message">
+
+Usss level tak pyaar karta hu tujhe ki kabhi kabhi khud bhi nahi samajh pata. Main dikhane mein accha nahi hu, lekin tu mere liye sabse zyada important hai. Teri jagah koi nahi le sakta. 🫠
+
+</div>
+
+<div class="video-box">
+<video controls>
+<source src="https://github.com/samxv-tech/happy-birthday-3/raw/refs/heads/main/.github/workflows/lv_7271510036499696898_20260530145502.mp4" type="video/mp4">
+</video>
+</div>
+
+<button class="next-btn" onclick="scrollToPage(3)">Memory Gallery 📸</button>
+
+</section>
+
+<!-- PAGE 4 -->
+
+<section class="page">
+
+<h1 class="title">Our Memory Gallery 🖤</h1>
+
+<div class="gallery">
+
+<img src="https://github.com/samxv-tech/happy-birthday-3/blob/main/.github/workflows/WhatsApp%20Image%202026-06-20%20at%2012.26.07%20PM.jpeg?raw=true">
+<img src="https://github.com/samxv-tech/happy-birthday-3/blob/main/.github/workflows/WhatsApp%20Image%202026-06-20%20at%2012.26.06%20PM.jpeg?raw=true">
+<img src="https://github.com/samxv-tech/happy-birthday-3/blob/main/.github/workflows/WhatsApp%20Image%202026-06-20%20at%2012.26.06%20PM%20(2).jpeg?raw=true">
+<img src="https://github.com/samxv-tech/happy-birthday-3/blob/main/.github/workflows/WhatsApp%20Image%202026-06-20%20at%2012.26.06%20PM%20(1).jpeg?raw=true">
+<img src="https://github.com/samxv-tech/happy-birthday-3/blob/main/.github/workflows/WhatsApp%20Image%202026-06-20%20at%2012.26.05%20PM.jpeg?raw=true">
+<img src="https://github.com/samxv-tech/happy-birthday-3/blob/main/.github/workflows/WhatsApp%20Image%202026-06-20%20at%2012.26.05%20PM%20(1).jpeg?raw=true">
+
+</div>
+
+<button class="next-btn" onclick="scrollToPage(4)">Next 💙</button>
+
+</section>
+<!-- PAGE 5 -->
+<section class="page">
+ 
+<div class="memory">
+  <img src="https://github.com/samxv-tech/happy-birthday-3/blob/main/WhatsApp%20Image%202026-06-20%20at%2010.44.05%20AM.jpeg?raw=true" alt="photo">
+
+  </div>
+
+
+<div class="message">
+
+Aaj bhi yaad hai jab hum mile the. Ek game se shuru hui baat aaj itni gehri ho jayegi, kabhi socha nahi tha. Tu meri bestie hi nahi, meri behen hai. 🤍
+
+  </div>
+
+<button class="next-btn" onclick="scrollToPage(5)">Next 💙</button>
+
+</section>
+<!-- PAGE 6 -->
+
+<section class="page">
+
+<div class="hearts">
+<span style="left:10%;animation-delay:0s;">💙</span>
+<span style="left:25%;animation-delay:2s;">🌸</span>
+<span style="left:45%;animation-delay:4s;">💖</span>
+<span style="left:70%;animation-delay:1s;">🌹</span>
+<span style="left:85%;animation-delay:3s;">💙</span>
+</div>
+
+<h1 class="title">I LOVE YOU BESTIEEE</h1>
+
+<div class="message">
+
+mere behnaaa ko is din ki hardik shubkamnaye <br><br>
+
+Rude hu, ziddi hu, arrogant bhi hu shayad. Lekin tune mujhe hamesha waise hi accept kiya jaisa main hu. Aur is baat ke liye main hamesha tera shukraguzaar rahunga. 🌸
+<br><br>
+</div>
+
+<div class="video-box">
+  <img src="https://github.com/samxv-tech/happy-birthday-3/blob/main/WhatsApp%20Image%202026-06-20%20at%2010.44.03%20AM.jpeg?raw=true" alt="Photo" />
+</div>
+
+<button class="next-btn" onclick="scrollToPage(6)">Next 💙</button>
+
+</section>
+<!-- PAGE 7 -->
+
+<section class="page">
+
+<div class="hearts">
+<span style="left:10%;animation-delay:0s;">💙</span>
+<span style="left:25%;animation-delay:2s;">🌸</span>
+<span style="left:45%;animation-delay:4s;">💖</span>
+<span style="left:70%;animation-delay:1s;">🌹</span>
+<span style="left:85%;animation-delay:3s;">💙</span>
+</div>
+
+
+<div class="message">
+
+wish you a happiest birthday pyariiii <br><br>
+
+Every single day tu meri life ko better banati hai. Teri notification dekhkar bhi smile aa jati hai. Aur tujhe udaas dekhkar dil toot jata hai. 🥹
+<br><br>
+</div>
+
+<div class="video-box">
+  <img src="https://github.com/samxv-tech/happy-birthday-3/blob/main/WhatsApp%20Image%202026-06-20%20at%2010.44.03%20AM%20(1).jpeg?raw=true" alt="Photo" />
+</div>
+
+<button class="next-btn" onclick="scrollToPage(7)">Next 💙</button>
+
+</section>
+<!-- PAGE 8 -->
+
+<section class="page">
+
+<div class="hearts">
+<span style="left:10%;animation-delay:0s;">💙</span>
+<span style="left:25%;animation-delay:2s;">🌸</span>
+<span style="left:45%;animation-delay:4s;">💖</span>
+<span style="left:70%;animation-delay:1s;">🌹</span>
+<span style="left:85%;animation-delay:3s;">💙</span>
+</div>
+
+<h1 class="title">THANK YOU SO MUCH🥹🐣💞</h1>
+
+<div class="message">
+
+Mere liye tu sirf ek dost nahi hai. Tu meri family hai, meri pyaari behna hai. Tere bina meri zindagi adhuri lagegi. 🫶🏻
+<br><br>
+</div>
+
+<div class="video-box">
+  <img src="https://github.com/samxv-tech/happy-birthday-3/blob/main/WhatsApp%20Image%202026-06-20%20at%2010.44.02%20AM.jpeg?raw=true" alt="Photo" />
+</div>
+
+<button class="next-btn" onclick="scrollToPage(8)">Next 💙</button>
+
+</section>
+<!-- PAGE 9 -->
+
+<section class="page">
+
+<div class="hearts">
+<span style="left:10%;animation-delay:0s;">💙</span>
+<span style="left:25%;animation-delay:2s;">🌸</span>
+<span style="left:45%;animation-delay:4s;">💖</span>
+<span style="left:70%;animation-delay:1s;">🌹</span>
+<span style="left:85%;animation-delay:3s;">💙</span>
+</div>
+
+
+<div class="message">
+
+ Yakeen maan, agar kabhi ladai bhi hui toh main hi manaunga. Hazar baar sorry bol lunga lekin tujhe kabhi dur nahi hone dunga. Kyuki tu bahut khaas hai. 💞
+<br><br>
+</div>
+
+<div class="video-box">
+  <img src="https://github.com/samxv-tech/happy-birthday-3/blob/main/WhatsApp%20Image%202026-06-20%20at%2010.44.02%20AM%20(1).jpeg?raw=true" alt="Photo" />
+</div>
+
+<button class="next-btn" onclick="scrollToPage(9)">Next 💙</button>
+
+</section>
+<!-- PAGE 10 -->
+
+<section class="page">
+
+<div class="hearts">
+<span style="left:10%;animation-delay:0s;">💙</span>
+<span style="left:25%;animation-delay:2s;">🌸</span>
+<span style="left:45%;animation-delay:4s;">💖</span>
+<span style="left:70%;animation-delay:1s;">🌹</span>
+<span style="left:85%;animation-delay:3s;">💙</span>
+</div>
+
+<h1 class="title">YOU ARE VERY SPECIAL💞</h1>
+
+<div class="message">
+Pata nahi tune mujh jaise ek insaan par itna trust kaise kiya. Lekin ek promise hai, main kabhi jaan bujhkar tujhe hurt nahi karunga. Main hamesha tere saath rahunga. 🌷
+<br><br>
+</div>
+
+<div class="video-box">
+  <img src="https://github.com/samxv-tech/happy-birthday-3/blob/main/WhatsApp%20Image%202026-06-20%20at%2010.44.01%20AM.jpeg?raw=true" alt="Photo" />
+</div>
+
+<button class="next-btn" onclick="scrollToPage(10)">Next 💙</button>
+
+</section>
+<!-- PAGE 11 -->
+
+<section class="page">
+
+<div class="hearts">
+<span style="left:10%;animation-delay:0s;">💙</span>
+<span style="left:25%;animation-delay:2s;">🌸</span>
+<span style="left:45%;animation-delay:4s;">💖</span>
+<span style="left:70%;animation-delay:1s;">🌹</span>
+<span style="left:85%;animation-delay:3s;">💙</span>
+</div>
+
+
+<div class="message">
+
+ Roz baat ho ya na ho, meri care kabhi kam nahi hogi. Kabhi bhi zarurat pade, bas ek call karna. Main hamesha available rahunga. 🐣
+<br><br>
+</div>
+
+<div class="video-box">
+  <img src="https://github.com/samxv-tech/happy-birthday-3/blob/main/WhatsApp%20Image%202026-06-20%20at%2010.44.01%20AM%20(2).jpeg?raw=true" alt="Photo" />
+</div>
+
+<button class="next-btn" onclick="scrollToPage(11)">Next 💙</button>
+
+</section>
+<!-- PAGE 12 -->
+
+<section class="page">
+
+<div class="hearts">
+<span style="left:10%;animation-delay:0s;">💙</span>
+<span style="left:25%;animation-delay:2s;">🌸</span>
+<span style="left:45%;animation-delay:4s;">💖</span>
+<span style="left:70%;animation-delay:1s;">🌹</span>
+<span style="left:85%;animation-delay:3s;">💙</span>
+</div>
+
+
+<div class="message">
+
+Ek baat sach hai, mujhe tujhe chidana bahut pasand hai. Tere saath bachcho wali harkate karna bhi. Aur yahi choti choti baatein meri favourite memories hain. 😂
+<br><br>
+</div>
+
+<div class="video-box">
+  <img src="https://github.com/samxv-tech/happy-birthday-3/blob/main/WhatsApp%20Image%202026-06-20%20at%2010.44.01%20AM%20(1).jpeg?raw=true" alt="Photo" />
+</div>
+
+<button class="next-btn" onclick="scrollToPage(12)">Next 💙</button>
+
+</section>
+<!-- PAGE 13 -->
+
+<section class="page">
+
+<div class="hearts">
+<span style="left:10%;animation-delay:0s;">💙</span>
+<span style="left:25%;animation-delay:2s;">🌸</span>
+<span style="left:45%;animation-delay:4s;">💖</span>
+<span style="left:70%;animation-delay:1s;">🌹</span>
+<span style="left:85%;animation-delay:3s;">💙</span>
+</div>
+
+<h1 class="title">BLESSED TO HAVE YOU💞</h1>
+
+<div class="message">
+
+Chahe duniya kuch bhi kahe, mere liye tu hamesha special rahegi. Main chahta hu ki tu hamesha khush rahe. Teri smile meri favourite cheez hai. ✨
+<br><br>
+</div>
+
+<div class="video-box">
+  <img src="https://github.com/samxv-tech/happy-birthday-3/blob/main/WhatsApp%20Image%202026-06-20%20at%2010.44.00%20AM.jpeg?raw=true" alt="Photo" />
+</div>
+
+<button class="next-btn" onclick="scrollToPage(13)">Next 💙</button>
+
+</section>
+<!-- PAGE 14 -->
+
+<section class="page">
+
+<div class="hearts">
+<span style="left:10%;animation-delay:0s;">💙</span>
+<span style="left:25%;animation-delay:2s;">🌸</span>
+<span style="left:45%;animation-delay:4s;">💖</span>
+<span style="left:70%;animation-delay:1s;">🌹</span>
+<span style="left:85%;animation-delay:3s;">💙</span>
+</div>
+
+<h1 class="title">TUM MERE BEHNAAA HO</h1>
+
+<div class="message">
+
+ I hope ki main ek aisa dost ban paun jiske paas tu bina soche sab kuch share kar sake. Main tujhe samajhna chahta hu, teri khamoshi bhi. Aur tujhe hamesha safe feel karwana chahta hu. 🤍
+<br><br>
+</div>
+
+<div class="video-box">
+  <img src="https://github.com/samxv-tech/happy-birthday-3/blob/main/WhatsApp%20Image%202026-06-20%20at%2010.44.00%20AM%20(1).jpeg?raw=true" alt="Photo" />
+</div>
+
+<button class="next-btn" onclick="scrollToPage(14)">Next 💙</button>
+
+</section>
+<!-- PAGE 15 -->
+
+<section class="page">
+
+<div class="hearts">
+<span style="left:10%;animation-delay:0s;">💙</span>
+<span style="left:25%;animation-delay:2s;">🌸</span>
+<span style="left:45%;animation-delay:4s;">💖</span>
+<span style="left:70%;animation-delay:1s;">🌹</span>
+<span style="left:85%;animation-delay:3s;">💙</span>
+</div>
+
+<h1 class="title">KHAYAL RAKHO KHUD KA</h1>
+
+<div class="message">
+
+One thing I know for sure, tu meri human medicine hai. Tujhse baat karu toh sukoon milta hai. Tujhe dekhkar saari tension chali jati hai. 🫠
+
+<br><br>
+</div>
+
+<div class="video-box">
+  <img src="https://github.com/samxv-tech/happy-birthday-3/blob/main/WhatsApp%20Image%202026-06-20%20at%2010.43.59%20AM.jpeg?raw=true" alt="Photo" />
+</div>
+
+<button class="next-btn" onclick="scrollToPage(15)">Next 💙</button>
+
+</section>
+<!-- PAGE 16 -->
+
+<section class="page">
+
+<div class="hearts">
+<span style="left:10%;animation-delay:0s;">💙</span>
+<span style="left:25%;animation-delay:2s;">🌸</span>
+<span style="left:45%;animation-delay:4s;">💖</span>
+<span style="left:70%;animation-delay:1s;">🌹</span>
+<span style="left:85%;animation-delay:3s;">💙</span>
+</div>
+
+
+<div class="message">
+
+Uff, kitni pyaari ho tum meri bestie ji. Main chahta hu ki ek din hum milkar bahut saari masti kare. Bahut saari yaadein banayein. 🥹🎀
+<br><br>
+</div>
+
+<div class="video-box">
+  <img src="https://github.com/samxv-tech/happy-birthday-3/blob/main/WhatsApp%20Image%202026-06-20%20at%2010.43.59%20AM%20(1).jpeg?raw=true" alt="Photo" />
+</div>
+
+<button class="next-btn" onclick="scrollToPage(16)">Next 💙</button>
+
+</section>
+<!-- PAGE 17 -->
+
+<section class="page">
+
+<div class="hearts">
+<span style="left:10%;animation-delay:0s;">💙</span>
+<span style="left:25%;animation-delay:2s;">🌸</span>
+<span style="left:45%;animation-delay:4s;">💖</span>
+<span style="left:70%;animation-delay:1s;">🌹</span>
+<span style="left:85%;animation-delay:3s;">💙</span>
+</div>
+
+<h1 class="title">AAP PRIORITY HO MERI🫶🏻</h1>
+
+<div class="message">
+
+Forever together, meri behna. 🫶🏻
+<br><br>
+</div>
+
+<div class="video-box">
+  <img src="https://github.com/samxv-tech/happy-birthday-3/blob/main/WhatsApp%20Image%202026-06-20%20at%2010.43.51%20AM.jpeg?raw=true" alt="Photo" />
+</div>
+
+<button class="next-btn" onclick="scrollToPage(17)">Next 💙</button>
+
+</section>
+<!-- PAGE 18 -->
+
+<section class="page">
+
+<div class="hearts">
+<span style="left:10%;animation-delay:0s;">💙</span>
+<span style="left:25%;animation-delay:2s;">🌸</span>
+<span style="left:45%;animation-delay:4s;">💖</span>
+<span style="left:70%;animation-delay:1s;">🌹</span>
+<span style="left:85%;animation-delay:3s;">💙</span>
+</div>
+
+<h1 class="title">KHAAS BACCHIII🫶🏻</h1>
+
+<div class="message">
+
+Bas itna jaan le, meri zindagi mein teri jagah sirf teri hai. Ya toh tu, ya phir koi nahi. Yeh kabhi nahi badlega. 🫶🏻
+<br><br>
+</div>
+
+<div class="video-box">
+  <img src="https://github.com/samxv-tech/happy-birthday-3/blob/main/WhatsApp%20Image%202026-06-20%20at%2010.43.46%20AM.jpeg?raw=true" alt="Photo" />
+</div>
+
+<button class="next-btn" onclick="scrollToPage(18)">Next 💙</button>
+
+</section>
+<!-- PAGE 19 -->
+
+<section class="page">
+
+<div class="hearts">
+<span style="left:10%;animation-delay:0s;">💙</span>
+<span style="left:25%;animation-delay:2s;">🌸</span>
+<span style="left:45%;animation-delay:4s;">💖</span>
+<span style="left:70%;animation-delay:1s;">🌹</span>
+<span style="left:85%;animation-delay:3s;">💙</span>
+</div>
+
+<div class="message">
+
+Every birthday of yours will always be special for me. Kyuki agar tu nahi hoti, toh shayad main aaj aisa nahi hota. Thank you for coming into my life. 💗
+<br><br>
+</div>
+
+<div class="video-box">
+  <img src="https://github.com/samxv-tech/happy-birthday-3/blob/main/WhatsApp%20Image%202026-06-20%20at%2010.43.46%20AM%20(1).jpeg?raw=true" alt="Photo" />
+</div>
+
+<button class="next-btn" onclick="scrollToPage(19)">Next 💙</button>
+
+</section>
+<!-- PAGE 20 -->
+
+<section class="page">
+
+<div class="hearts">
+<span style="left:10%;animation-delay:0s;">💙</span>
+<span style="left:25%;animation-delay:2s;">🌸</span>
+<span style="left:45%;animation-delay:4s;">💖</span>
+<span style="left:70%;animation-delay:1s;">🌹</span>
+<span style="left:85%;animation-delay:3s;">💙</span>
+</div>
+
+
+<div class="message">
+
+Sirf ek wish hai, tu hamesha hasta rahe. Duniya ki saari khushiyan tujhe mile. Aur tere aansu kabhi na aaye. 🥹
+<br><br>
+</div>
+
+<div class="video-box">
+  <img src="https://github.com/samxv-tech/happy-birthday-3/blob/main/WhatsApp%20Image%202026-06-20%20at%2010.43.45%20AM.jpeg?raw=true" alt="Photo" />
+</div>
+
+<button class="next-btn" onclick="scrollToPage(20)">Next 💙</button>
+
+</section>
+<!-- PAGE 21 -->
+
+<section class="page">
+
+<div class="hearts">
+<span style="left:10%;animation-delay:0s;">💙</span>
+<span style="left:25%;animation-delay:2s;">🌸</span>
+<span style="left:45%;animation-delay:4s;">💖</span>
+<span style="left:70%;animation-delay:1s;">🌹</span>
+<span style="left:85%;animation-delay:3s;">💙</span>
+</div>
+
+<h1 class="title">TUM MERE LIYE KYA HO💞</h1>
+
+<div class="message">
+
+Thank you for loving me, understanding me and accepting me. Tune mujhe asli dosti ka matlab sikhaya hai. Aur main yeh kabhi nahi bhoolunga. 🌷
+
+<br><br>
+</div>
+
+<div class="video-box">
+  <img src="https://github.com/samxv-tech/happy-birthday-3/blob/main/WhatsApp%20Image%202026-06-20%20at%2010.43.45%20AM%20(1).jpeg?raw=true" alt="Photo" />
+</div>
+
+<button class="next-btn" onclick="scrollToPage(21)">Next 💙</button>
+
+</section>
+<!-- PAGE 22 -->
+
+<section class="page">
+
+<div class="hearts">
+<span style="left:10%;animation-delay:0s;">💙</span>
+<span style="left:25%;animation-delay:2s;">🌸</span>
+<span style="left:45%;animation-delay:4s;">💖</span>
+<span style="left:70%;animation-delay:1s;">🌹</span>
+<span style="left:85%;animation-delay:3s;">💙</span>
+</div>
+
+<h1 class="title">GALE MILNA HAI BACCHIII👉🏻👈🏻</h1>
+
+<div class="message">
+
+ILYSM BRUHHHH! Kitna bhi pyaar karlu, dil kabhi nahi bharta. Tu meri favourite person hai, aur hamesha rahegi. 😭🫶🏻
+<br><br>
+</div>
+
+<div class="video-box">
+  <img src="https://github.com/samxv-tech/happy-birthday-3/blob/main/WhatsApp%20Image%202026-06-20%20at%2010.43.44%20AM.jpeg?raw=true" alt="Photo" />
+</div>
+
+<button class="next-btn" onclick="scrollToPage(22)">Next 💙</button>
+
+</section>
+<!-- PAGE 23 -->
+
+<section class="page">
+
+<div class="hearts">
+<span style="left:10%;animation-delay:0s;">💙</span>
+<span style="left:25%;animation-delay:2s;">🌸</span>
+<span style="left:45%;animation-delay:4s;">💖</span>
+<span style="left:70%;animation-delay:1s;">🌹</span>
+<span style="left:85%;animation-delay:3s;">💙</span>
+</div>
+
+<h1 class="title">PYAARII BEHNAAA💞</h1>
+
+<div class="message">
+
+End mein bas itna... Happiest Birthday meri pyaari bestie. Bhagwan kare tumhari har khwahish poori ho. Stay happy and stay blessed always. 🎂🎀
+<br><br>
+</div>
+
+<div class="video-box">
+  <img src="https://github.com/samxv-tech/happy-birthday-3/blob/main/WhatsApp%20Image%202026-06-20%20at%2010.43.44%20AM%20(1).jpeg?raw=true" alt="Photo" />
+</div>
+
+<button class="next-btn" onclick="scrollToPage(23)">Next 💙</button>
+
+</section>
+<!-- PAGE 24 -->
+
+<section class="page">
+
+<div class="hearts">
+<span style="left:10%;animation-delay:0s;">💙</span>
+<span style="left:25%;animation-delay:2s;">🌸</span>
+<span style="left:45%;animation-delay:4s;">💖</span>
+<span style="left:70%;animation-delay:1s;">🌹</span>
+<span style="left:85%;animation-delay:3s;">💙</span>
+</div>
+
+<h1 class="title">YOU ARE MY EVERYTHING💞🫠</h1>
+
+<div class="message">
+
+HAPPY BIRTHDAY TO MY MOST PRECIOUS GIRLLLLL! 💗
+<br><br>
+</div>
+
+<div class="video-box">
+  <img src="https://github.com/samxv-tech/happy-birthday-3/blob/main/WhatsApp%20Image%202026-06-20%20at%2010.43.43%20AM.jpeg?raw=true" alt="Photo" />
+</div>
+
+<div class="container">
+  <div class="hidden-msg">Your hidden message</div>
+</div>
+  <button class="reveal-btn" onclick="showHiddenMessage()">
+Tap For Hidden Surprise 💌
+</button>
+<div class="hidden-message" id="hiddenMsg">
+ Happiest Birthday meri pyaari bestieeee! 🥹🫶🏻 Tu meri zindagi ka sabse khoobsurat hissa hai aur hamesha rahegi. Chahe waqt badle, log badle ya halat badle, meri taraf se tere liye pyaar, respect aur care kabhi kam nahi hogi. Bhagwan kare teri har ek khwahish poori ho, tu hamesha haste raho, aur meri life mein hamesha aise hi bani raho. ILYSM BRUHHHHH! 🎀🐣💞
+</div>
+  
+  <div class="footer">
+Made with infinite love for my bestiee 🥹
+</div>
+  <button class="next-btn" onclick="scrollToPage(24)">
+</section>
+<script>
+
+let currentPass = "";
+
+function addNumber(num){
+
+if(currentPass.length < 4){
+currentPass += num;
+document.getElementById("passcode").value = "•".repeat(currentPass.length);
+}
+
+}
+
+function clearPass(){
+
+currentPass = currentPass.slice(0,-1);
+document.getElementById("passcode").value = "•".repeat(currentPass.length);
+
+}
+
+function checkPass(){
+
+if(currentPass === "2506"){
+
+document.getElementById("lockScreen").style.display = "none";
+
+confetti({
+particleCount:300,
+spread:120,
+origin:{y:0.6}
+});
+
+}
+else{
+
+document.getElementById("wrongPass").innerText = "Wrong Passcode 🥺";
+
+currentPass = "";
+document.getElementById("passcode").value = "";
+
+}
+
+}
+
+function scrollToPage(index){
+document.querySelectorAll('.page')[index].scrollIntoView({
+behavior:'smooth'
+});
+}
+
+function showHiddenMessage(){
+document.getElementById('hiddenMsg').style.display='block';
+
+confetti({
+particleCount:250,
+spread:120,
+origin:{y:0.6}
+});
+}
+
+window.onload = () => {
+
+confetti({
+particleCount:200,
+spread:150,
+origin:{y:0.5}
+});
+
+setInterval(() => {
+confetti({
+particleCount:60,
+spread:80,
+origin:{
+x:Math.random(),
+y:Math.random()-0.2
+}
+});
+},5000);
+
+};
+
+</script>
+
+</body>
+</html>
